@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Works Painting | Luxury Residential Painting Specialists</title>
+    <meta name="description" content="Premium interior and exterior painting for luxury homes. Craftsmanship, elegance, and precision in every detail.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0f172a",
+                        secondary: "#1e293b",
+                        accent: "#dc2626",
+                        neutral: "#475569",
+                        light: "#f8fafc",
+                        cream: "#fefce8"
+                    },
+                    fontFamily: {
+                        'display': ['"Playfair Display"', 'serif'],
+                        'sans': ['"Inter"', 'system-ui', 'sans-serif'],
+                        'mono': ['"JetBrains Mono"', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 3s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #dc2626 0%, #0f172a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .stagger-animation > * {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        .stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+        .form-success {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-sans text-neutral bg-light antialiased">
+    <!-- Navigation -->
+    <header class="fixed top-0 w-full z-50 glass-effect">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-lg">
+                        <i class="fas fa-paint-roller text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-primary tracking-tight">COLOR WORKS</h1>
+                        <p class="text-xs text-neutral font-mono tracking-wider">PAINTING SOLUTION</p>
+                    </div>
+                </div>
+                
+                <ul id="nav-menu" class="hidden lg:flex space-x-10"></ul>
+                
+                <div class="hidden lg:block">
+                    <button id="consultation-btn-nav" class="bg-accent hover:bg-red-700 text-white font-semibold py-2.5 px-6 rounded-full text-sm tracking-wide transition-all duration-300 hover:shadow-xl">
+                        <i class="fas fa-calendar-alt mr-2"></i>FREE CONSULTATION
+                    </button>
+                </div>
+                
+                <button id="mobile-menu-btn" class="lg:hidden text-primary text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden lg:hidden mt-6 pb-4">
+                <ul id="mobile-nav-list" class="space-y-4"></ul>
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <button id="consultation-btn-mobile" class="w-full bg-accent hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-300">
+                        Free Consultation
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-light via-cream to-white z-0"></div>
+        <div class="absolute top-20 right-10 w-64 h-64 rounded-full bg-gradient-to-r from-accent/10 to-primary/10 blur-3xl"></div>
+        <div class="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-gradient-to-l from-accent/5 to-primary/5 blur-3xl"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="inline-block bg-accent/10 text-accent font-semibold text-sm px-4 py-2 rounded-full mb-6 tracking-wider">
+                        <i class="fas fa-star mr-2"></i>LUXURY RESIDENTIAL SPECIALISTS
+                    </span>
+                    <h2 class="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-primary mb-8 leading-tight">
+                        Precision in<br>
+                        <span class="gradient-text">Every Detail.</span>
+                    </h2>
+                    <p class="text-xl md:text-2xl text-neutral max-w-3xl mx-auto mb-12 font-light leading-relaxed">
+                        Transforming high‑end homes with craftsmanship, elegance, and lasting beauty.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                    <button id="consultation-btn-hero" class="group bg-primary hover:bg-secondary text-white font-semibold py-4 px-10 rounded-full text-lg transition-all duration-300 hover-lift shadow-2xl flex items-center">
+                        <span>Request Free Consultation</span>
+                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform duration-300"></i>
+                    </button>
+                    <a href="#portfolio" class="group border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-4 px-10 rounded-full text-lg transition-all duration-300 hover-lift flex items-center">
+                        <i class="fas fa-images mr-3"></i>
+                        <span>View Our Work</span>
+                    </a>
+                </div>
+                
+                <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="glass-effect p-6 rounded-2xl">
+                        <div class="text-3xl font-bold text-primary mb-2">15+</div>
+                        <div class="text-sm text-neutral">Years Experience</div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl">
+                        <div class="text-3xl font-bold text-primary mb-2">500+</div>
+                        <div class="text-sm text-neutral">Luxury Homes</div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl">
+                        <div class="text-3xl font-bold text-primary mb-2">100%</div>
+                        <div class="text-sm text-neutral">Satisfaction</div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-2xl">
+                        <div class="text-3xl font-bold text-primary mb-2">24/7</div>
+                        <div class="text-sm text-neutral">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="relative">
+                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-accent/10 rounded-full"></div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/5 rounded-full"></div>
+                        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/LTIDBmSGRlLM_CO5Sdk6qg/348s.jpg
+                    " alt="Modern luxury home painting with precision detailing" class="rounded-3xl shadow-2xl w-full h-auto relative z-10 hover-lift">
+                        <div class="absolute -bottom-8 -right-8 z-0 w-64 h-64 bg-gradient-to-br from-accent to-primary opacity-5 rounded-3xl"></div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-4xl font-display font-bold text-primary mb-8">
+                            <span class="border-b-4 border-accent pb-2">Craftsmanship</span> Meets Innovation
+                        </h3>
+                        <p class="text-lg text-neutral mb-8 leading-relaxed">
+                            At Color Works Painting Solution, we specialize in premium interior and exterior painting for large and luxury homes. With years of experience and a passion for detail, we deliver smooth finishes, sharp lines, and refined color palettes tailored to your space.
+                        </p>
+                        <p class="text-lg text-neutral mb-10 leading-relaxed">
+                            Our team works cleanly, professionally, and with the care your home deserves—combining traditional craftsmanship with modern techniques and materials.
+                        </p>
+                        
+                        <div class="flex items-center space-x-6">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                                    <i class="fas fa-award text-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-primary">Award Winning</div>
+                                    <div class="text-sm text-neutral">Quality Standards</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-shield-alt text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-primary">Fully Insured</div>
+                                    <div class="text-sm text-neutral">Peace of Mind</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-choose" class="py-20 bg-gradient-to-b from-white to-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-accent font-mono text-sm tracking-widest mb-4 block">WHY CHOOSE US</span>
+                <h3 class="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
+                    The Color Works<br>Difference
+                </h3>
+                <div class="section-divider w-32 mx-auto my-8"></div>
+            </div>
+            
+            <div id="benefits-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto stagger-animation"></div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-accent font-mono text-sm tracking-widest mb-4 block">OUR EXPERTISE</span>
+                <h3 class="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
+                    Comprehensive<br>Painting Solutions
+                </h3>
+                <p class="text-lg text-neutral max-w-2xl mx-auto">
+                    From initial consultation to final inspection, we handle every aspect of your luxury painting project.
+                </p>
+            </div>
+            
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto stagger-animation"></div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery -->
+    <section id="portfolio" class="py-20 bg-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-accent font-mono text-sm tracking-widest mb-4 block">OUR WORK</span>
+                <h3 class="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
+                    Portfolio of<br>Excellence
+                </h3>
+                <p class="text-lg text-neutral max-w-2xl mx-auto">
+                    Browse our gallery of completed luxury residential projects showcasing precision, elegance, and transformative results.
+                </p>
+            </div>
+            
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"></div>
+            
+            <div class="text-center mt-12">
+                <button id="consultation-btn-portfolio" class="bg-accent hover:bg-red-700 text-white font-semibold py-3.5 px-10 rounded-full text-lg transition-all duration-300 hover-lift shadow-lg">
+                    <i class="fas fa-calendar-check mr-3"></i>Schedule Your Project Consultation
+                </button>
+            </div>
+        </div>
+    </section>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "XCjX6CFmxyqsWW3KJ",
+      });
+   })();
+</script>
+<script src="Untitled-1"> </script>
+    <!-- Consultation Form Modal -->
+    <div id="consultation-modal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h3 class="text-3xl font-display font-bold text-primary">Free Consultation Request</h3>
+                        <p class="text-neutral mt-2">Complete the form below and we'll contact you within 24 hours</p>
+                    </div>
+                    <button id="close-modal" class="text-2xl text-neutral hover:text-primary">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div id="form-success" class="hidden bg-green-50 border border-green-200 rounded-2xl p-8 text-center mb-8">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check text-green-600 text-2xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-primary mb-4">Thank You!</h4>
+                    <p class="text-lg text-neutral mb-6">Your consultation request has been received. We'll contact you within 24 hours to schedule your free consultation.</p>
+                    <button id="close-success" class="bg-primary hover:bg-secondary text-white font-semibold py-3 px-8 rounded-full">
+                        Close
+                    </button>
+                </div>
+                
+                <form id="consultation-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-primary mb-2">Full Name *</label>
+                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent/30 focus:border-accent outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-primary mb-2">Email Address *</label>
+                            <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent/30 focus:border-accent outline-none transition-all">
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-primary mb-2">Phone Number</label>
+                            <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent/30 focus:border-accent outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-primary mb-2">Project Type</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent/30 focus:border-accent outline-none transition-all">
+                                <option value="">Select project type</option>
+                                <option value="interior">Interior Painting</option>
+                                <option value="exterior">Exterior Painting</option>
+                                <option value="both">Both Interior & Exterior</option>
+                                <option value="consultation">Color Consultation Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-primary mb-2">Project Details</label>
+                        <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-accent/30 focus:border-accent outline-none transition-all" placeholder="Tell us about your project, timeline, and any specific requirements..."></textarea>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="newsletter" class="w-4 h-4 text-accent rounded focus:ring-accent">
+                        <label for="newsletter" class="ml-3 text-sm text-neutral">Subscribe to our newsletter for painting tips and exclusive offers</label>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" onclick="sendMail()" class="w-full bg-accent hover:bg-red-700 text-white font-semibold py-4 rounded-xl text-lg transition-all duration-300">
+                            <i class="fas fa-paper-plane mr-3"></i>Submit Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-white/20 flex items-center justify-center">
+                            <i class="fas fa-paint-roller text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">COLOR WORKS</h3>
+                            <p class="text-sm text-gray-300 font-mono">PAINTING SOLUTION</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        Luxury residential painting specialists delivering craftsmanship, elegance, and precision for high-end homes.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-all">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-all">
+                            <i class="fab fa-houzz"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact Info</h4>
+                    <ul id="contact-info" class="space-y-4"></ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul id="footer-links" class="space-y-3"></ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Service Areas</h4>
+                    <ul id="service-areas" class="space-y-2 text-gray-300"></ul>
+                    <div class="mt-8 p-4 bg-white/5 rounded-xl">
+                        <p class="text-sm mb-3">Need immediate assistance?</p>
+                        <a href="tel:+15551234567" class="text-accent font-bold text-xl hover:text-white transition-colors">
+                            <i class="fas fa-phone-alt mr-2"></i>(555) 123-4567
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/10 text-center text-gray-400 text-sm">
+                <p>&copy; <span id="current-year"></span> Color Works Painting Solution. All rights reserved. | Luxury Residential Painting Specialists</p>
+                <p class="mt-2">Designed with precision for discerning homeowners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Layer
+        const navigationItems = [
+            { "label": "Home", "href": "#home", "icon": "fas fa-home" },
+            { "label": "About", "href": "#about", "icon": "fas fa-info-circle" },
+            { "label": "Services", "href": "#services", "icon": "fas fa-paint-roller" },
+            { "label": "Portfolio", "href": "#portfolio", "icon": "fas fa-images" },
+            { "label": "Contact", "href": "#contact", "icon": "fas fa-envelope" }
+        ];
+
+        const benefits = [
+            { 
+                "title": "Luxury-level Craftsmanship", 
+                "description": "Master painters with specialized training in high-end finishes, intricate detailing, and premium material application.",
+                "icon": "fas fa-gem"
+            },
+            { 
+                "title": "Expertise in Large Homes", 
+                "description": "Specialized experience handling expansive properties with complex architectural features and detailed finishes.",
+                "icon": "fas fa-building"
+            },
+            { 
+                "title": "Premium Materials", 
+                "description": "We use only the highest quality paints, primers, and materials from leading luxury brands for lasting results.",
+                "icon": "fas fa-palette"
+            },
+            { 
+                "title": "Professional Scheduling", 
+                "description": "Honest timelines, clear communication, and professional crews that respect your home and schedule.",
+                "icon": "fas fa-calendar-check"
+            },
+            { 
+                "title": "Flawless Results", 
+                "description": "Meticulous attention to detail ensures smooth finishes, sharp lines, and perfection in every corner.",
+                "icon": "fas fa-check-double"
+            },
+            { 
+                "title": "Clean & Respectful", 
+                "description": "We treat your home with the utmost care, maintaining cleanliness and protecting your property throughout the project.",
+                "icon": "fas fa-broom"
+            }
+        ];
+
+        const services = [
+            { 
+                "title": "Interior Painting", 
+                "description": "Complete interior transformation with premium paints, precise trim work, and flawless wall finishes.",
+                "icon": "fas fa-home",
+                "color": "bg-accent/10"
+            },
+            { 
+                "title": "Exterior Painting", 
+                "description": "Weather-resistant coatings, surface preparation, and protective finishes that enhance curb appeal.",
+                "icon": "fas fa-external-link-alt",
+                "color": "bg-primary/10"
+            },
+            { 
+                "title": "Color Consultation", 
+                "description": "Expert guidance on color selection, lighting considerations, and creating harmonious palettes for your space.",
+                "icon": "fas fa-eye-dropper",
+                "color": "bg-accent/10"
+            },
+            { 
+                "title": "Trim & Molding", 
+                "description": "Precision painting of crown molding, baseboards, wainscoting, and intricate architectural details.",
+                "icon": "fas fa-ruler-combined",
+                "color": "bg-primary/10"
+            },
+            { 
+                "title": "Surface Restoration", 
+                "description": "Professional preparation, repair, and restoration of walls, ceilings, and woodwork before painting.",
+                "icon": "fas fa-tools",
+                "color": "bg-accent/10"
+            },
+            { 
+                "title": "Cabinet Refinishing", 
+                "description": "Specialized techniques for updating kitchen and bathroom cabinets with durable, beautiful finishes.",
+                "icon": "fas fa-archive",
+                "color": "bg-primary/10"
+            }
+        ];
+
+        const portfolioItems = [
+            { 
+                "title": "Modern Villa Transformation", 
+                "category": "Interior",
+                "image": "https://s3-media0.fl.yelpcdn.com/bphoto/a7yFPIs2cOvFlx1awiFjkg/348s.jpg",
+                "alt": "Modern villa exterior painting transformation"
+            },
+            { 
+                "title": "Luxury Interior Bedroom Makeover", 
+                "category": "Interior",
+                "image": "https://s3-media0.fl.yelpcdn.com/bphoto/FqUEO2x500fbkIrIeFhYSQ/348s.jpg",
+                "alt": "Luxury living room interior painting"
+            },
+            { 
+                "title": "Home Restoration", 
+                "category": "Restoration",
+                "image": "https://s3-media0.fl.yelpcdn.com/bphoto/yPHQIs63GMr68LpTvBXbDw/348s.jpg",
+                "alt": "Historic home exterior restoration painting"
+            },
+            { 
+                "title": "Modern Style Kitchen", 
+                "category": "Cabinet",
+                "image": "https://s3-media0.fl.yelpcdn.com/bphoto/OkYgAMh_lgSL-2LX6OOPCA/348s.jpg",
+                "alt": "Modern Style kitchen Rennovation"
+            },
+            { 
+                "title": "Elegant Dining Room", 
+                "category": "Interior",
+                "image": "https://s3-media0.fl.yelpcdn.com/bphoto/M-dEwIi1rGPSf5P0YbvfYg/348s.jpg",
+                "alt": "Elegant dining room with detailed trim work"
+            },
+            { 
+                "title": "Custom Color Scheme", 
+                "category": "Consultation",
+                "image": "https://s3-media0.fl.yelpcdn.com/bphoto/_8BEQuFTMgTaOt7YqDeLuA/348s.jpg",
+                "alt": "Custom color consultation and application"
+            }
+        ];
+
+        const contactInfo = [
+            { "icon": "fas fa-map-marker-alt", "text": "183 Berry Rd" },
+            { "icon": "fas fa-phone", "text": "(647) 926-4452" },
+            { "icon": "fas fa-envelope", "text": "colorworkspainting284@gmail.com" },
+            { "icon": "fas fa-clock", "text": "Mon-Fri: 8am-6pm | Sat: 9am-4pm" }
+        ];
+
+        const footerLinks = [
+            { "label": "About Us", "href": "#about" },
+            { "label": "Our Services", "href": "#services" },
+            { "label": "Portfolio", "href": "#portfolio" },
+            { "label": "Testimonials", "href": "#testimonials" },
+            { "label": "Blog", "href": "#blog" },
+            { "label": "Careers", "href": "#careers" },
+            { "label": "Privacy Policy", "href": "#privacy" },
+            { "label": "Terms of Service", "href": "#terms" }
+        ];
+
+        const serviceAreas = [
+            "Prestige District",
+            "Luxury Heights",
+            "Executive Estates",
+            "Grand Manor Area",
+            "Elite Enclave",
+            "Premium Properties Zone"
+        ];
+
+        // Render Functions
+        function renderNavItems(items) {
+            return items.map(item => 
+                `<li><a href="${item.href}" class="text-primary hover:text-accent font-medium transition-colors duration-300">${item.label}</a></li>`
+            ).join("");
+        }
+
+        function renderMobileNavItems(items) {
+            return items.map(item => 
+                `<li><a href="${item.href}" class="flex items-center text-primary hover:text-accent font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition-all duration-300">
+                    <i class="${item.icon} mr-3 w-5 text-center"></i>${item.label}
+                </a></li>`
+            ).join("");
+        }
+
+        function renderBenefits(items) {
+            return items.map(item => 
+                `<div class="bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100">
+                    <div class="w-14 h-14 rounded-xl ${item.icon.includes('gem') ? 'bg-purple-100 text-purple-600' : 'bg-accent/10 text-accent'} flex items-center justify-center mb-6">
+                        <i class="${item.icon} text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-4">${item.title}</h4>
+                    <p class="text-neutral leading-relaxed">${item.description}</p>
+                </div>`
+            ).join("");
+        }
+
+        function renderServices(items) {
+            return items.map(item => 
+                `<div class="bg-white p-8 rounded-2xl shadow-lg hover-lift border border-gray-100">
+                    <div class="w-14 h-14 rounded-xl ${item.color} flex items-center justify-center mb-6">
+                        <i class="${item.icon} text-2xl ${item.color.includes('accent') ? 'text-accent' : 'text-primary'}"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-4">${item.title}</h4>
+                    <p class="text-neutral leading-relaxed">${item.description}</p>
+                    <div class="mt-6 pt-6 border-t border-gray-100">
+                        <a href="#consultation" class="text-accent font-semibold text-sm hover:text-primary transition-colors">
+                            Learn More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>`
+            ).join("");
+        }
+
+        function renderPortfolio(items) {
+            return items.map(item => 
+                `<div class="group relative overflow-hidden rounded-2xl shadow-lg hover-lift">
+                    <img src="${item.image}" alt="${item.alt}" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div>
+                            <span class="inline-block bg-accent text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">${item.category}</span>
+                            <h4 class="text-white font-bold text-lg">${item.title}</h4>
+                        </div>
+                    </div>
+                </div>`
+            ).join("");
+        }
+
+        function renderContactInfo(items) {
+            return items.map(item => 
+                `<li class="flex items-start">
+                    <i class="${item.icon} text-accent mt-1 mr-3"></i>
+                    <span class="text-gray-300">${item.text}</span>
+                </li>`
+            ).join("");
+        }
+
+        function renderFooterLinks(items) {
+            return items.map(item => 
+                `<li><a href="${item.href}" class="text-gray-300 hover:text-white transition-colors">${item.label}</a></li>`
+            ).join("");
+        }
+
+        function renderServiceAreas(items) {
+            return items.map(item => 
+                `<li class="flex items-center">
+                    <i class="fas fa-map-pin text-accent mr-2 text-xs"></i>${item}
+                </li>`
+            ).join("");
+        }
+
+        // DOM Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Render all sections
+            document.getElementById('nav-menu').innerHTML = renderNavItems(navigationItems);
+            document.getElementById('mobile-nav-list').innerHTML = renderMobileNavItems(navigationItems);
+            document.getElementById('benefits-grid').innerHTML = renderBenefits(benefits);
+            document.getElementById('services-grid').innerHTML = renderServices(services);
+            document.getElementById('portfolio-grid').innerHTML = renderPortfolio(portfolioItems);
+            document.getElementById('contact-info').innerHTML = renderContactInfo(contactInfo);
+            document.getElementById('footer-links').innerHTML = renderFooterLinks(footerLinks);
+            document.getElementById('service-areas').innerHTML = renderServiceAreas(serviceAreas);
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
+                    ? '<i class="fas fa-bars"></i>' 
+                    : '<i class="fas fa-times"></i>';
+            });
+            
+            // Consultation modal functionality
+            const consultationModal = document.getElementById('consultation-modal');
+            const formSuccess = document.getElementById('form-success');
+            const consultationForm = document.getElementById('consultation-form');
+            
+            // Open modal buttons
+            const openModalButtons = [
+                document.getElementById('consultation-btn-nav'),
+                document.getElementById('consultation-btn-mobile'),
+                document.getElementById('consultation-btn-hero'),
+                document.getElementById('consultation-btn-portfolio')
+            ];
+            
+            openModalButtons.forEach(button => {
+                if (button) {
+                    button.addEventListener('click', function() {
+                        consultationModal.classList.remove('hidden');
+                        consultationModal.classList.add('flex');
+                        document.body.style.overflow = 'hidden';
+                    });
+                }
+            });
+            
+            // Close modal
+            document.getElementById('close-modal').addEventListener('click', closeModal);
+            document.getElementById('close-success').addEventListener('click', closeModal);
+            
+            // Close modal on outside click
+            consultationModal.addEventListener('click', function(e) {
+                if (e.target === consultationModal) {
+                    closeModal();
+                }
+            });
+            
+            // Form submission
+            consultationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real application, you would send the form data to a server here
+                // For demonstration, we'll just show the success message
+                
+                consultationForm.style.display = 'none';
+                formSuccess.classList.remove('hidden');
+                
+                // Reset form after 5 seconds if user doesn't close
+                setTimeout(() => {
+                    if (!consultationModal.classList.contains('hidden')) {
+                        consultationForm.reset();
+                        consultationForm.style.display = 'block';
+                        formSuccess.classList.add('hidden');
+                        closeModal();
+                    }
+                }, 5000);
+            });
+            
+            function closeModal() {
+                consultationModal.classList.add('hidden');
+                consultationModal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+                
+                // Reset form
+                setTimeout(() => {
+                    consultationForm.reset();
+                    consultationForm.style.display = 'block';
+                    formSuccess.classList.add('hidden');
+                }, 300);
+            }
+            
+            // Smooth scrolling for anchor links
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('a[href^="#"]');
+                if (!link) return;
+                
+                const href = link.getAttribute('href');
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
